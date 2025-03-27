@@ -1,0 +1,66 @@
+package com.Model;
+
+public class Book 
+{
+	private String bookId;
+	private String title;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	private String author;
+	private String genre;
+	private boolean isAvailable;
+	
+	public String getBookId() 
+	{
+		return bookId;
+	}
+	public void setBookId(String bookId) 
+	{
+		this.bookId = bookId;
+	}
+	public String getAuthor() 
+	{
+		return author;
+	}
+	public void setAuthor(String author) 
+	{
+		this.author = author;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) 
+	{
+		this.genre = genre;
+	}
+	public boolean isAvailable() 
+	{
+		return isAvailable;
+	}
+	public void setAvailable(boolean isAvailable) 
+	{
+		this.isAvailable = isAvailable;
+	}
+	public Book(String bookId, String title,String author, String genre, boolean isAvailable) 
+	{
+		super();
+		this.bookId = bookId;
+		this.title=title;
+		this.author = author;
+		this.genre = genre;
+		this.isAvailable = isAvailable;
+	}
+	public Book()
+	{
+		super();
+	}
+	@Override
+	public String toString() {
+		return "bookId=" + bookId + "title="+ title +", author=" + author + ", genre=" + genre 
+				+ ", isAvailable=" + isAvailable;
+	}
+}
