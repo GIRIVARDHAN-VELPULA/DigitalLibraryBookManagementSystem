@@ -1,0 +1,54 @@
+package com.Main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.Implementation.Implement;
+import com.Model.Book;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Hello User...");
+		Scanner sc=new Scanner(System.in);
+		
+		Implement action=new Implement();
+		
+		while(true)
+		{
+			System.out.println("1. Add Book");
+			System.out.println("2. View All Books");
+			System.out.println("3. Search Book");
+			System.out.println("4. Update Book Details");
+			System.out.println("5. Remove Book");
+			System.out.println("6. Exit");
+			int option=sc.nextInt();
+			switch(option)
+			{
+				case 1:
+					action.add();
+					break;
+				case 2:
+					action.displayAllBooks();
+					break;
+				case 3:
+					action.searchBook();
+					break;
+				case 4:
+					action.updateBookInfo();
+					break;
+				case 5:
+					action.removeBook();
+					break;
+				case 6:
+					System.out.println("Thank you for using");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Enter valid option");
+					break;
+			}
+		}
+	}
+}
