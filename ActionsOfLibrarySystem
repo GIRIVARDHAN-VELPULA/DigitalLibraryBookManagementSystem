@@ -1,0 +1,16 @@
+package com.Demo;
+
+public interface ActionsDemo 
+{
+
+	void add();
+	
+	void displayAllBooks();
+	
+	void searchBook();
+	
+	void updateBookInfo();
+	
+	void removeBook();
+
+}
