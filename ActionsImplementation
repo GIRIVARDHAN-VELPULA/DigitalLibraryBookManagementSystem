@@ -1,0 +1,236 @@
+package com.Implementation;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.Demo.ActionsDemo;
+import com.Model.Book;
+
+public class Implement implements ActionsDemo
+{
+	
+	Scanner scanInt=new Scanner(System.in);
+	Scanner scanString=new Scanner(System.in);
+	
+	ArrayList<Book> books=new ArrayList<Book>();
+
+
+    boolean checkBookExist(String bookId)
+	{
+		for(Book existedBook:books)
+		{
+			if(existedBook.getBookId().equals(bookId))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	@Override
+	public void add() 
+	{
+		try
+		{
+			Book book=new Book();
+			System.out.println("Add Book ");
+			System.out.print("Enter Book ID : ");
+			book.setBookId(scanString.nextLine());
+			if(checkBookExist(book.getBookId()))
+			{
+				System.out.println("This ID already exists Please Enter Unique one");
+				add();
+			}
+			System.out.print("Enter Book Title : ");
+			book.setTitle(scanString.nextLine());
+			System.out.print("Enter Book Author : ");
+			book.setAuthor(scanString.nextLine());
+			System.out.print("Enter Book Genre : ");
+			book.setGenre(scanString.next());
+			System.out.print("Enter Book Availablity : ");
+			book.setAvailable(scanString.nextBoolean());
+			scanString.nextLine();
+			books.add(book);
+			System.out.print("Book added Successfully");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void displayAllBooks() {
+		
+		try
+		{
+			if(books.size()==0)
+			{
+				System.out.println("Sorry! Books are not available.");
+				return;
+			}
+			
+			System.out.println("All Books are : ");
+			for(Book eachbook : books)
+			{
+				System.out.println(eachbook);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void searchBook() {
+		
+		try
+		{
+			System.out.println("Search Book by ID or title : ");
+			System.out.println("1. ID");
+			System.out.println("2. title");
+			System.out.println("Enter an option to Search : ");
+			int searchOption=scanInt.nextInt();
+			int count=0;
+			if(searchOption==1)
+			{
+				System.out.println("Enter Book ID : ");
+				String searchBookId=scanString.nextLine();
+				for(Book searchBook : books)
+				{
+					if(searchBookId.equals(searchBook.getBookId()))
+					{
+						System.out.println(searchBook);
+						count++;
+						break;
+					}
+				}
+				if(count==0)
+				{
+					System.out.println("Please Enter correct ID of a book");
+					return;
+				}
+			}
+			else if(searchOption==2)
+			{
+				System.out.println("Enter Book Title : ");
+				String searchBookTitle=scanString.nextLine();
+				for(Book searchBooks : books)
+				{
+					if(searchBookTitle.equals(searchBooks.getTitle()))
+					{
+						System.out.println(searchBooks);
+						count++;
+						break;
+					}
+				}
+				if(count==0)
+				{
+					System.out.println("Please Enter correct ID of a book");
+					return;
+				}
+			}
+			else
+			{
+				System.out.println("Please Enter Valid Option...");
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void updateBookInfo() {
+	
+		try
+		{
+			System.out.println("Update Book Information");
+			System.out.println("1.Modify Title ");
+			System.out.println("2.Modify Author ");
+			System.out.println("3.Modify genre ");
+			System.out.println("4.Modify status ");
+			System.out.println("Enter your option : ");
+			int updateOption=scanInt.nextInt();
+			System.out.println("Enter book Id which book information you want to modify : ");
+			String bookid=scanString.nextLine();
+			Book updateBook=null;
+			for(Book book1 : books)
+			{
+				if(book1.getBookId().equals(bookid))
+				{
+					updateBook=book1;
+				}
+			}
+			if(updateBook==null)
+			{
+				System.out.println("Sorry,Please Enter correct ID");
+				return ;
+			}
+			switch(updateOption)
+			{
+				case 1:
+					
+					System.out.println("Enter Book new Title : ");
+					updateBook.setTitle(scanString.nextLine());
+					break;
+				case 2:
+					System.out.println("Enter Author name to update Book Author : ");
+					updateBook.setAuthor(scanString.nextLine());
+					break;
+				case 3:
+					System.out.println("Enter Genre to update Book Genre : ");
+					updateBook.setGenre(scanString.nextLine());
+					break;
+				case 4:
+					System.out.println("Enter status to update Book Status : ");
+					updateBook.setAvailable(scanString.nextBoolean());
+					break;
+				default :
+					System.out.println("Enter valid option...");
+					break;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void removeBook() {
+		// TODO Auto-generated method stub
+		
+		try
+		{
+			System.out.println("Delete a book");
+			System.out.print("Enter book ID you want to delete : ");
+			String book_id=scanString.nextLine();
+			boolean removeStatus=false;
+			for(Book removeBook : books)
+			{
+				if(removeBook.getBookId().equals(book_id))
+				{
+					books.remove(removeBook);
+					System.out.println("Book Deleted Successfully");
+					removeStatus=true;
+					break;
+				}
+			}
+			if(!removeStatus)
+			{
+				System.out.println("Please Enter valid Book ID");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+}
